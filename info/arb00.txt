@@ -1,0 +1,731 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Gazdă: 127.0.0.1
+-- Timp de generare: mart. 31, 2025 la 11:58 AM
+-- Versiune server: 10.4.32-MariaDB
+-- Versiune PHP: 8.0.30
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Bază de date: `arb00`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `activitati`
+--
+
+CREATE TABLE `activitati` (
+  `id_act` int(11) NOT NULL,
+  `denumire` varchar(150) DEFAULT NULL,
+  `data_act` date DEFAULT NULL,
+  `observatii` text DEFAULT NULL,
+  `id_pers` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `biserici`
+--
+
+CREATE TABLE `biserici` (
+  `id_biserica` int(11) NOT NULL,
+  `anul_infintarii` int(11) DEFAULT NULL,
+  `adresa` varchar(200) DEFAULT NULL,
+  `localitatea` varchar(150) DEFAULT NULL,
+  `judet` varchar(150) DEFAULT NULL,
+  `stare` varchar(150) DEFAULT NULL,
+  `observatii` text DEFAULT NULL,
+  `id_parohie` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `cimitir`
+--
+
+CREATE TABLE `cimitir` (
+  `id_cimitir` int(11) NOT NULL,
+  `nume_cimitir` varchar(150) DEFAULT NULL,
+  `adresa` varchar(200) DEFAULT NULL,
+  `anul_infintarii` int(11) DEFAULT NULL,
+  `Observatii` text DEFAULT NULL,
+  `id_parohie` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `cladiri`
+--
+
+CREATE TABLE `cladiri` (
+  `id_cladire` int(11) NOT NULL,
+  `Cladire` varchar(150) DEFAULT NULL,
+  `stare` varchar(150) DEFAULT NULL,
+  `anul_constructiei` int(11) DEFAULT NULL,
+  `Observatii` text DEFAULT NULL,
+  `id_parohie` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `concesionari`
+--
+
+CREATE TABLE `concesionari` (
+  `id_cesionar` int(11) NOT NULL,
+  `numele` varchar(150) DEFAULT NULL,
+  `prenumele` varchar(150) DEFAULT NULL,
+  `cnp` char(13) NOT NULL,
+  `adresa` varchar(200) DEFAULT NULL,
+  `localitate` varchar(150) DEFAULT NULL,
+  `judet` varchar(150) DEFAULT NULL,
+  `telefon` varchar(150) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `id_loc` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `evenimente`
+--
+
+CREATE TABLE `evenimente` (
+  `id_eveniment` int(11) NOT NULL,
+  `eveniment` varchar(150) DEFAULT NULL,
+  `data` date DEFAULT NULL,
+  `descriere` text DEFAULT NULL,
+  `id_biserica` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `functii`
+--
+
+CREATE TABLE `functii` (
+  `id_functie` int(11) NOT NULL,
+  `nume_functie` varchar(150) NOT NULL,
+  `descriere` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `hramuri`
+--
+
+CREATE TABLE `hramuri` (
+  `id_hram` int(11) NOT NULL,
+  `Hram` varchar(150) DEFAULT NULL,
+  `id_biserica` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `inventar`
+--
+
+CREATE TABLE `inventar` (
+  `InventarID` int(11) NOT NULL,
+  `UnitCultCentrala` varchar(150) DEFAULT NULL,
+  `ParohieID` int(11) DEFAULT NULL,
+  `Localitate` varchar(150) DEFAULT NULL,
+  `Denumire` varchar(150) DEFAULT NULL,
+  `Valoare` decimal(10,2) DEFAULT NULL,
+  `NrInventar` varchar(150) DEFAULT NULL,
+  `DataIntrarii` date DEFAULT NULL,
+  `AutorProducator` varchar(150) DEFAULT NULL,
+  `Descriere` text DEFAULT NULL,
+  `UnitateMasura` varchar(150) DEFAULT NULL,
+  `NrUnitateMasura` int(11) DEFAULT NULL,
+  `Colectia` varchar(150) DEFAULT NULL,
+  `MaterialTitlu` varchar(150) DEFAULT NULL,
+  `DimensiuniGreutate` varchar(150) DEFAULT NULL,
+  `StareConservare` varchar(150) DEFAULT NULL,
+  `Provenienta` varchar(150) DEFAULT NULL,
+  `DocumentIntrare` varchar(150) DEFAULT NULL,
+  `ValoareIntrare` decimal(10,2) DEFAULT NULL,
+  `DataIesire` date DEFAULT NULL,
+  `MotivIesire` text DEFAULT NULL,
+  `DataVerificare` date DEFAULT NULL,
+  `Observatii` text DEFAULT NULL,
+  `CategorieBun` varchar(150) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `loc_cimitir`
+--
+
+CREATE TABLE `loc_cimitir` (
+  `id_loc` int(11) NOT NULL,
+  `zona` varchar(150) DEFAULT NULL,
+  `rand` varchar(150) DEFAULT NULL,
+  `observatii` text DEFAULT NULL,
+  `id_cimitir` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `parohii`
+--
+
+CREATE TABLE `parohii` (
+  `id_parohie` int(11) NOT NULL,
+  `id_tip_parohie` int(11) DEFAULT NULL,
+  `nume_parohie` varchar(150) DEFAULT NULL,
+  `cui` varchar(150) DEFAULT NULL,
+  `adresa` varchar(200) DEFAULT NULL,
+  `localitate` varchar(150) DEFAULT NULL,
+  `judet` varchar(150) DEFAULT NULL,
+  `anul_infiintarii` int(11) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `telefon` varchar(150) DEFAULT NULL,
+  `site` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `personal`
+--
+
+CREATE TABLE `personal` (
+  `id_pers` int(11) NOT NULL,
+  `numele` varchar(150) DEFAULT NULL,
+  `prenumele` varchar(150) DEFAULT NULL,
+  `data_nasterii` date DEFAULT NULL,
+  `cnp` char(13) NOT NULL,
+  `adresa` varchar(200) DEFAULT NULL,
+  `localitate` varchar(150) DEFAULT NULL,
+  `judet` varchar(150) DEFAULT NULL,
+  `loc_nastere` varchar(150) DEFAULT NULL,
+  `jud_nastere` varchar(150) DEFAULT NULL,
+  `id_stare_civila` int(11) DEFAULT NULL,
+  `id_functie` int(11) DEFAULT NULL,
+  `data_angajarii` date DEFAULT NULL,
+  `data_incetarii_job` date DEFAULT NULL,
+  `Observatii` text DEFAULT NULL,
+  `id_parohie` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `stari_civile`
+--
+
+CREATE TABLE `stari_civile` (
+  `id_stare_civila` int(11) NOT NULL AUTO_INCREMENT,
+  `nume_stare_civila` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_stare_civila`),
+  UNIQUE KEY `nume_stare_civila` (`nume_stare_civila`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Inserare stări civile
+INSERT INTO `stari_civile` (`nume_stare_civila`) VALUES
+('Căsătorit'),
+('Necăsătorit'),
+('Văduv'),
+('Divorțat'),
+('Divorțat-recăsătorit'),
+('Văduv-recăsătorit');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `pers_studii`
+--
+
+CREATE TABLE `pers_studii` (
+  `id_studiu` int(11) NOT NULL,
+  `tip_studiu` enum('Liceu','Colegiu','Curs Specilizare','Licentiale','Masteral','Doctorat') DEFAULT NULL,
+  `Institutia` varchar(150) DEFAULT NULL,
+  `anul_absolvirii` int(11) DEFAULT NULL,
+  `media` decimal(4,2) DEFAULT NULL,
+  `id_pers` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `protopopiate`
+--
+
+CREATE TABLE `protopopiate` (
+  `id_proterie` int(11) NOT NULL,
+  `denumire` varchar(150) DEFAULT NULL,
+  `cui` varchar(150) DEFAULT NULL,
+  `adresa` varchar(200) DEFAULT NULL,
+  `localitate` varchar(150) DEFAULT NULL,
+  `judet` varchar(150) DEFAULT NULL,
+  `anul_infiintarii` int(11) DEFAULT NULL,
+  `cod_caen` varchar(150) DEFAULT NULL,
+  `descr_caen` text DEFAULT NULL,
+  `observatii` text DEFAULT NULL,
+  `status` enum('activ','dezactivat') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Eliminarea datelor din tabel `protopopiate`
+--
+
+INSERT INTO `protopopiate` (`id_proterie`, `denumire`, `cui`, `adresa`, `localitate`, `judet`, `anul_infiintarii`, `cod_caen`, `descr_caen`, `observatii`, `status`) VALUES
+(1, 'PROTOPOPIATUL BACAU', '4670259', 'STR. 9 Mai, NR.  48', 'Bacau', 'BACAU', 1993, '9491', 'Activitati ale organizatiilor religioase', 'PROTOPOP PC. PR. Eugen-Ciprian Ciuche', 'activ'),
+(2, 'PROTOIERIA MOINESTI', '10187985', 'Moinesti', 'Moinesti', 'Bacau', 1995, '', '', '', 'activ'),
+(3, 'PROTOIERIA SASCUT', '26729187', 'str. Principala, nr. 33', 'Sascut', 'Bacau', NULL, NULL, NULL, NULL, 'activ'),
+(4, 'PROTOPOPIATUL BUHUSI', '399999', 'Strada Carpați 2, cod Postal: 605100', 'Buhusi', 'Bacau', NULL, NULL, NULL, NULL, 'dezactivat'),
+(6, 'PROTOPOPIATUL ONESTI', '4786467', 'Str. Adrian Păunescu 1, Cod poștal 601066', 'Onesti', 'Bacau', 1993, '9491', 'Activitati ale organizatiilor religioase', '', 'activ'),
+(7, 'PROTOIERIA MOINESTI', '399999', 'Str. Vasile Alecsandri, nr. 56', 'Moinesti', 'Bacau', 1995, '9491', 'Activitati ale organizatiilor religioase', '', 'activ');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `roluri`
+--
+
+CREATE TABLE `roluri` (
+  `id_rol` int(11) NOT NULL,
+  `nume_rol` varchar(150) NOT NULL,
+  `descriere` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Eliminarea datelor din tabel `roluri`
+--
+
+INSERT INTO `roluri` (`id_rol`, `nume_rol`, `descriere`) VALUES
+(1, 'admin', 'Administrator'),
+(2, 'protopop', 'Protopopiat'),
+(3, 'paroh', 'parohie'),
+(4, 'cimitir', 'Cimitir');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `taxe_cmt`
+--
+
+CREATE TABLE `taxe_cmt` (
+  `id_taxa` int(11) NOT NULL,
+  `nume_taxa` varchar(150) DEFAULT NULL,
+  `data_achitarii` date DEFAULT NULL,
+  `nr_chitanta` varchar(150) DEFAULT NULL,
+  `suma` decimal(10,2) DEFAULT NULL,
+  `anul` int(11) DEFAULT NULL,
+  `id_cesionar` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `tipuri_parohie`
+--
+
+CREATE TABLE `tipuri_parohie` (
+  `id_tip_parohie` int(11) NOT NULL,
+  `nume_tip_parohie` varchar(150) NOT NULL,
+  `descriere` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Eliminarea datelor din tabel `tipuri_parohie`
+--
+
+INSERT INTO `tipuri_parohie` (`id_tip_parohie`, `nume_tip_parohie`, `descriere`) VALUES
+(1, 'urban - tip 1', NULL),
+(2, 'urban - tip 2', NULL),
+(3, 'urban - tip 3', NULL),
+(4, 'rural - tip 1', NULL),
+(5, 'rural - tip 2', NULL),
+(6, 'rural - tip 3', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `users`
+--
+
+CREATE TABLE `users` (
+  `id_user` int(11) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `Nume` varchar(150) DEFAULT NULL,
+  `id_rol` int(11) DEFAULT NULL,
+  `last_login` datetime DEFAULT NULL,
+  `status` enum('activ','dezactivat') DEFAULT NULL,
+  `id_parohie` int(11) DEFAULT NULL,
+  `id_proterie` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Eliminarea datelor din tabel `users`
+--
+
+INSERT INTO `users` (`id_user`, `username`, `password`, `Nume`, `id_rol`, `last_login`, `status`, `id_parohie`, `id_proterie`) VALUES
+(1, 'admin', '$2y$10$5Jvsv/szFVBK8k.wAfo.v.WmkeQbiJ30jh6vZFppYdgdYYxR4ltcq', 'Administrator', 1, '2025-03-19 13:44:07', 'activ', NULL, NULL),
+(2, 'Bacau', '$2y$10$kcA9kZtosGt45xa9oey77.yUTZECVnlru8Cd7s8Tk/0HGqOm7n3Ea', 'Protopopiatul Bacau', 2, NULL, 'activ', NULL, 1),
+(3, 'moinesti', '$2y$10$FNCi3YyGCpgkYJrIABgzwulUSmOu3aALrkFO4EmSMOkzzrrAJvd0.', 'Protoieria Moinesti', 2, NULL, 'activ', NULL, 2),
+(4, 'izvoarele.bc', '$2y$10$2flG66q9U0QenhPSkYji3.Of433N20uxOX89I7PO7LPTIIrbzXZRe', 'Parohia Izvoarele Bacau', 3, NULL, 'activ', NULL, NULL);
+
+--
+-- Indexuri pentru tabele eliminate
+--
+
+--
+-- Indexuri pentru tabele `activitati`
+--
+ALTER TABLE `activitati`
+  ADD PRIMARY KEY (`id_act`),
+  ADD KEY `id_pers` (`id_pers`);
+
+--
+-- Indexuri pentru tabele `biserici`
+--
+ALTER TABLE `biserici`
+  ADD PRIMARY KEY (`id_biserica`),
+  ADD KEY `id_parohie` (`id_parohie`);
+
+--
+-- Indexuri pentru tabele `cimitir`
+--
+ALTER TABLE `cimitir`
+  ADD PRIMARY KEY (`id_cimitir`),
+  ADD KEY `id_parohie` (`id_parohie`);
+
+--
+-- Indexuri pentru tabele `cladiri`
+--
+ALTER TABLE `cladiri`
+  ADD PRIMARY KEY (`id_cladire`),
+  ADD KEY `id_parohie` (`id_parohie`);
+
+--
+-- Indexuri pentru tabele `concesionari`
+--
+ALTER TABLE `concesionari`
+  ADD PRIMARY KEY (`id_cesionar`),
+  ADD UNIQUE KEY `cnp` (`cnp`),
+  ADD KEY `id_loc` (`id_loc`);
+
+--
+-- Indexuri pentru tabele `evenimente`
+--
+ALTER TABLE `evenimente`
+  ADD PRIMARY KEY (`id_eveniment`),
+  ADD KEY `id_biserica` (`id_biserica`);
+
+--
+-- Indexuri pentru tabele `functii`
+--
+ALTER TABLE `functii`
+  ADD PRIMARY KEY (`id_functie`),
+  ADD UNIQUE KEY `nume_functie` (`nume_functie`);
+
+--
+-- Indexuri pentru tabele `hramuri`
+--
+ALTER TABLE `hramuri`
+  ADD PRIMARY KEY (`id_hram`),
+  ADD KEY `id_biserica` (`id_biserica`);
+
+--
+-- Indexuri pentru tabele `inventar`
+--
+ALTER TABLE `inventar`
+  ADD PRIMARY KEY (`InventarID`),
+  ADD KEY `ParohieID` (`ParohieID`);
+
+--
+-- Indexuri pentru tabele `loc_cimitir`
+--
+ALTER TABLE `loc_cimitir`
+  ADD PRIMARY KEY (`id_loc`),
+  ADD KEY `id_cimitir` (`id_cimitir`);
+
+--
+-- Indexuri pentru tabele `parohii`
+--
+ALTER TABLE `parohii`
+  ADD PRIMARY KEY (`id_parohie`),
+  ADD KEY `id_tip_parohie` (`id_tip_parohie`);
+
+--
+-- Indexuri pentru tabele `personal`
+--
+ALTER TABLE `personal`
+  ADD PRIMARY KEY (`id_pers`),
+  ADD UNIQUE KEY `cnp` (`cnp`),
+  ADD KEY `id_parohie` (`id_parohie`),
+  ADD KEY `id_stare_civila` (`id_stare_civila`),
+  ADD KEY `id_functie` (`id_functie`);
+
+--
+-- Indexuri pentru tabele `pers_studii`
+--
+ALTER TABLE `pers_studii`
+  ADD PRIMARY KEY (`id_studiu`),
+  ADD KEY `id_pers` (`id_pers`);
+
+--
+-- Indexuri pentru tabele `protopopiate`
+--
+ALTER TABLE `protopopiate`
+  ADD PRIMARY KEY (`id_proterie`);
+
+--
+-- Indexuri pentru tabele `roluri`
+--
+ALTER TABLE `roluri`
+  ADD PRIMARY KEY (`id_rol`),
+  ADD UNIQUE KEY `nume_rol` (`nume_rol`);
+
+--
+-- Indexuri pentru tabele `stari_civile`
+--
+ALTER TABLE `stari_civile`
+  ADD PRIMARY KEY (`id_stare_civila`),
+  ADD UNIQUE KEY `nume_stare_civila` (`nume_stare_civila`);
+
+--
+-- Indexuri pentru tabele `taxe_cmt`
+--
+ALTER TABLE `taxe_cmt`
+  ADD PRIMARY KEY (`id_taxa`),
+  ADD KEY `id_cesionar` (`id_cesionar`);
+
+--
+-- Indexuri pentru tabele `tipuri_parohie`
+--
+ALTER TABLE `tipuri_parohie`
+  ADD PRIMARY KEY (`id_tip_parohie`),
+  ADD UNIQUE KEY `nume_tip_parohie` (`nume_tip_parohie`);
+
+--
+-- Indexuri pentru tabele `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `id_rol` (`id_rol`),
+  ADD KEY `fk_users_parohii` (`id_parohie`),
+  ADD KEY `fk_users_protopopiate` (`id_proterie`);
+
+--
+-- AUTO_INCREMENT pentru tabele eliminate
+--
+
+--
+-- AUTO_INCREMENT pentru tabele `activitati`
+--
+ALTER TABLE `activitati`
+  MODIFY `id_act` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `biserici`
+--
+ALTER TABLE `biserici`
+  MODIFY `id_biserica` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `cimitir`
+--
+ALTER TABLE `cimitir`
+  MODIFY `id_cimitir` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `cladiri`
+--
+ALTER TABLE `cladiri`
+  MODIFY `id_cladire` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `concesionari`
+--
+ALTER TABLE `concesionari`
+  MODIFY `id_cesionar` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `evenimente`
+--
+ALTER TABLE `evenimente`
+  MODIFY `id_eveniment` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `functii`
+--
+ALTER TABLE `functii`
+  MODIFY `id_functie` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `hramuri`
+--
+ALTER TABLE `hramuri`
+  MODIFY `id_hram` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `inventar`
+--
+ALTER TABLE `inventar`
+  MODIFY `InventarID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `loc_cimitir`
+--
+ALTER TABLE `loc_cimitir`
+  MODIFY `id_loc` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `parohii`
+--
+ALTER TABLE `parohii`
+  MODIFY `id_parohie` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `personal`
+--
+ALTER TABLE `personal`
+  MODIFY `id_pers` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `pers_studii`
+--
+ALTER TABLE `pers_studii`
+  MODIFY `id_studiu` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `protopopiate`
+--
+ALTER TABLE `protopopiate`
+  MODIFY `id_proterie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pentru tabele `roluri`
+--
+ALTER TABLE `roluri`
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT pentru tabele `taxe_cmt`
+--
+ALTER TABLE `taxe_cmt`
+  MODIFY `id_taxa` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `tipuri_parohie`
+--
+ALTER TABLE `tipuri_parohie`
+  MODIFY `id_tip_parohie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pentru tabele `users`
+--
+ALTER TABLE `users`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constrângeri pentru tabele eliminate
+--
+
+--
+-- Constrângeri pentru tabele `activitati`
+--
+ALTER TABLE `activitati`
+  ADD CONSTRAINT `activitati_ibfk_1` FOREIGN KEY (`id_pers`) REFERENCES `personal` (`id_pers`);
+
+--
+-- Constrângeri pentru tabele `biserici`
+--
+ALTER TABLE `biserici`
+  ADD CONSTRAINT `biserici_ibfk_1` FOREIGN KEY (`id_parohie`) REFERENCES `parohii` (`id_parohie`);
+
+--
+-- Constrângeri pentru tabele `cimitir`
+--
+ALTER TABLE `cimitir`
+  ADD CONSTRAINT `cimitir_ibfk_1` FOREIGN KEY (`id_parohie`) REFERENCES `parohii` (`id_parohie`);
+
+--
+-- Constrângeri pentru tabele `cladiri`
+--
+ALTER TABLE `cladiri`
+  ADD CONSTRAINT `cladiri_ibfk_1` FOREIGN KEY (`id_parohie`) REFERENCES `parohii` (`id_parohie`);
+
+--
+-- Constrângeri pentru tabele `concesionari`
+--
+ALTER TABLE `concesionari`
+  ADD CONSTRAINT `concesionari_ibfk_1` FOREIGN KEY (`id_loc`) REFERENCES `loc_cimitir` (`id_loc`);
+
+--
+-- Constrângeri pentru tabele `evenimente`
+--
+ALTER TABLE `evenimente`
+  ADD CONSTRAINT `evenimente_ibfk_1` FOREIGN KEY (`id_biserica`) REFERENCES `biserici` (`id_biserica`);
+
+--
+-- Constrângeri pentru tabele `hramuri`
+--
+ALTER TABLE `hramuri`
+  ADD CONSTRAINT `hramuri_ibfk_1` FOREIGN KEY (`id_biserica`) REFERENCES `biserici` (`id_biserica`);
+
+--
+-- Constrângeri pentru tabele `inventar`
+--
+ALTER TABLE `inventar`
+  ADD CONSTRAINT `inventar_ibfk_1` FOREIGN KEY (`ParohieID`) REFERENCES `parohii` (`id_parohie`);
+
+--
+-- Constrângeri pentru tabele `loc_cimitir`
+--
+ALTER TABLE `loc_cimitir`
+  ADD CONSTRAINT `loc_cimitir_ibfk_1` FOREIGN KEY (`id_cimitir`) REFERENCES `cimitir` (`id_cimitir`);
+
+--
+-- Constrângeri pentru tabele `parohii`
+--
+ALTER TABLE `parohii`
+  ADD CONSTRAINT `parohii_ibfk_1` FOREIGN KEY (`id_tip_parohie`) REFERENCES `tipuri_parohie` (`id_tip_parohie`);
+
+--
+-- Constrângeri pentru tabele `personal`
+--
+ALTER TABLE `personal`
+  ADD CONSTRAINT `personal_ibfk_1` FOREIGN KEY (`id_parohie`) REFERENCES `parohii` (`id_parohie`),
+  ADD CONSTRAINT `personal_ibfk_2` FOREIGN KEY (`id_stare_civila`) REFERENCES `stari_civile` (`id_stare_civila`),
+  ADD CONSTRAINT `personal_ibfk_3` FOREIGN KEY (`id_functie`) REFERENCES `functii` (`id_functie`);
+
+--
+-- Constrângeri pentru tabele `pers_studii`
+--
+ALTER TABLE `pers_studii`
+  ADD CONSTRAINT `pers_studii_ibfk_1` FOREIGN KEY (`id_pers`) REFERENCES `personal` (`id_pers`);
+
+--
+-- Constrângeri pentru tabele `taxe_cmt`
+--
+ALTER TABLE `

@@ -1,0 +1,20 @@
+/project_root arb-03
+|-- index.php        # login page
+|-- logout.php
+|-- config.php       # conexiune DB
+|-- /pages
+    |-- parohii.php
+    |-- personal.php
+    |-- inventar.php
+    |-- cimitir.php
+|-- /includes
+    |-- header.php
+    |-- footer.php
+    |-- auth.php
+|-- /assets
+    |-- /css		$bootstrap
+    |-- /js
+    |-- /datatables
+    |-- /fontwae
+|-- /functions
+|-- /ajax      		for datatables
